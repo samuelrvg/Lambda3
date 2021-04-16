@@ -4,5 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Lambda3.Games.Dominio\Lambda3.Games.Dominio.csproj" />
+  </ItemGroup>
+
 
 </Project>

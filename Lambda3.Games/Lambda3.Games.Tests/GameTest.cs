@@ -112,7 +112,7 @@ namespace Lambda3.Games.Tests
             Assert.ThrowsException<Exception>(() =>
             {
                 _gameService.Classificacao(mockGameTest);
-            }, "");
+            });
         }
 
         [TestMethod]
