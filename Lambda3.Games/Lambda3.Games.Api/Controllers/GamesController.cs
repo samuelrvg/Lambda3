@@ -33,7 +33,7 @@ namespace Lambda3.Games.Api.Controllers
                 return Ok(finalistas);
             }
 
-            return Ok();
+            return NotFound();
         }
     }
 }
