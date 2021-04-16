@@ -21,19 +21,27 @@ namespace Lambda3.Games.Api.Controllers
         [HttpPost]
         public ActionResult<Game> Post([FromBody] List<Game> games)
         {
-            if (games == null)
-                BadRequest();
-
-            if(games.Count() == quantidadeMinimaParaListaDeGames)
+            try
             {
-                var primeiroGrupo = _gameService.Classificacao(games.OrderBy(g => g.Titulo).ToList());
-                var segundoGrupo = _gameService.Classificacao(primeiroGrupo);
-                var finalistas = _gameService.ClassificacaoFinal(segundoGrupo);
+                if (games == null)
+                    BadRequest();
 
-                return Ok(finalistas);
+                if (games.Count() == quantidadeMinimaParaListaDeGames)
+                {
+                    var primeiroGrupo = _gameService.Classificacao(games.OrderBy(g => g.Titulo).ToList());
+                    var segundoGrupo = _gameService.Classificacao(primeiroGrupo);
+                    var finalistas = _gameService.ClassificacaoFinal(segundoGrupo);
+
+                    return Ok(finalistas);
+                }
+
+                return NotFound();
             }
+            catch (System.Exception e)
+            {
 
-            return NotFound();
+                throw e;
+            }
         }
     }
 }
