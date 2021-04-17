@@ -7,7 +7,7 @@ using Lambda3.Games.Dominio.Service;
 namespace Lambda3.Games.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class GamesController : ControllerBase
     {
         private readonly GameService _gameService;
