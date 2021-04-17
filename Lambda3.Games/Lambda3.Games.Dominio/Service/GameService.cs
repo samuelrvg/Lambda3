@@ -19,7 +19,7 @@ namespace Lambda3.Games.Dominio.Service
             Game game2 = null;
             int count = games.Count() - 1;
 
-            List<Game> classificados = new List<Game>();
+            var classificados = new List<Game>();
 
             for (int i = 0; i < games.ToList().Count(); i++)
             {
@@ -30,7 +30,16 @@ namespace Lambda3.Games.Dominio.Service
                 {
                     if (game1.Ano == game2.Ano)
                     {
-                        classificados.Add(games.OrderBy(e => e.Titulo).FirstOrDefault());
+                        //var pilha = new Stack<Game>();
+                        //pilha.Push(game1);
+                        //pilha.Push(game2);
+                        //classificados.Add(pilha.OrderBy(e => e.Titulo).FirstOrDefault());
+
+                        var ordernaGames = new List<Game>();
+                        ordernaGames.Add(game1);
+                        ordernaGames.Add(game2);
+
+                        classificados.Add(ordernaGames.OrderBy(e => e.Titulo).FirstOrDefault());
                     }
                     else if (game1.Ano > game2.Ano)
                         classificados.Add(game1);
@@ -38,9 +47,7 @@ namespace Lambda3.Games.Dominio.Service
                         classificados.Add(game2);
                 }
                 else if (game1.Nota > game2.Nota)
-                {
                     classificados.Add(game1);
-                }
                 else
                     classificados.Add(game2);
 
@@ -50,15 +57,14 @@ namespace Lambda3.Games.Dominio.Service
                 count--;
             }
 
-
             return classificados;
         }
 
         public List<Game> ClassificacaoFinal(List<Game> finalistas)
         {
             var classificacaoFinal = new List<Game>();
-            var primeiroLugar = Classificacao(finalistas).FirstOrDefault();
 
+            var primeiroLugar = Classificacao(finalistas).FirstOrDefault();
             classificacaoFinal.Add(primeiroLugar);
 
             var segundoLugar = finalistas.Where(e => e.Id != primeiroLugar.Id).FirstOrDefault();
@@ -68,3 +74,4 @@ namespace Lambda3.Games.Dominio.Service
         }
     }
 }
+    
