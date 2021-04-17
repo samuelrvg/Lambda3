@@ -13,6 +13,10 @@
 export default {
   props: {
     game: Object
+    // checkedGames: []
+  },
+  data() {
+    return {};
   }
 };
 </script>
