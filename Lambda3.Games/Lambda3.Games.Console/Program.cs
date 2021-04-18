@@ -1,29 +1,22 @@
-﻿using System;
+﻿using Lambda3.Games.Dominio.Model;
+using Lambda3.Games.Dominio.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using static System.Console;
 
 namespace Lambda3.Games.Console
 {
-    public class Games
-    {
-        public string Id { get; set; }
-        public string Titulo { get; set; }
-        public double Nota { get; set; }
-        public int Ano { get; set; }
-    }
     class Program
     {
         static void Main(string[] args)
         {
-
+            var gameService = new GameService();
             var games = CriarGames();
 
-            var gamesSelecionados = SelecionarOitoGamesDistintosParaDisputa(games).OrderBy(g => g.Titulo).ToList();
+            var gamesSelecionados = SelecionarOitoGamesDistintosParaDisputa(games);
 
-            //var primeiraFaseDeClassificacao = Classificacao(gamesSelecionados);
-            //var segundaFaseDeClassificacao = Classificacao(primeiraFaseDeClassificacao);
-            var classificacao = Classificacao(gamesSelecionados);
+            var classificacao = gameService.Classificacao(gamesSelecionados);
 
             WriteLine("-------PRIMEIRO LUGAR-------");
             WriteLine("Titulo: {0}", classificacao[0].Titulo);
@@ -34,41 +27,42 @@ namespace Lambda3.Games.Console
             WriteLine("Titulo: {0}", classificacao[1].Titulo);
             WriteLine("Nota: {0}", classificacao[1].Nota);
             WriteLine("Ano: {0}", classificacao[1].Ano);
+
             ReadKey();
         }
 
-        public static List<Games> CriarGames()
+        public static List<Game> CriarGames()
         {
-            var games = new List<Games>()
+            var games = new List<Game>()
             {
-                new Games() { Id = "/nintendo-64/the-legend-of-zelda-ocarina-of-time", Titulo= "The Legend of Zelda: Ocarina of Time (N64)", Nota=99.9, Ano = 1998 },
-                new Games() { Id = "/playstation/tony-hawks-pro-skater-2", Titulo= "Tony Hawk's Pro Skater 2 (PS)", Nota=98.9, Ano = 2000 },
-                new Games() { Id = "/playstation-3/grand-theft-auto-iv", Titulo= "Grand Theft Auto IV (PS3)", Nota=98.9, Ano = 2008 },
-                new Games() { Id = "/dreamcast/soulcalibur", Titulo= "SoulCalibur (DC)", Nota=98.9, Ano = 1999 },
-                new Games() { Id = "/wii/super-mario-galaxy", Titulo= "Super Mario Galaxy (WII)", Nota=97.9, Ano = 2007 },
-                new Games() { Id = "/wii/super-mario-galaxy-2", Titulo= "Super Mario Galaxy 2 (WII)", Nota=97.9, Ano = 2010 },
-                new Games() { Id = "/xbox-one/red-dead-redemption-2", Titulo= "Red Dead Redemption 2 (XONE)", Nota=97.9, Ano = 2018 },
-                new Games() { Id = "/xbox-one/grand-theft-auto-v", Titulo= "Grand Theft Auto V (XONE)", Nota=97.9, Ano = 2014 },
-                new Games() { Id = "/playstation-3/grand-theft-auto-v", Titulo= "Grand Theft Auto V (PS3)", Nota=97.9, Ano = 2013 },
-                new Games() { Id = "/xbox-360/grand-theft-auto-v", Titulo= "Grand Theft Auto V (X360)", Nota=97.0, Ano = 2013 },
-                new Games() { Id = "/dreamcast/tony-hawks-pro-skater-2", Titulo= "Tony Hawk's Pro Skater 2 (DC)", Nota=97.0, Ano = 2000 },
-                new Games() { Id = "/switch/the-legend-of-zelda-breath-of-the-wild", Titulo= "The Legend of Zelda: Breath of the Wild (Switch)", Nota=97.8, Ano = 2017 },
-                new Games() { Id = "/playstation-2/tony-hawks-pro-skater-3", Titulo= "Tony Hawk's Pro Skater 3 (PS2)", Nota=97.8, Ano = 2001 },
-                new Games() { Id = "/nintendo-64/perfect-dark", Titulo= "Perfect Dark (N64)", Nota=97.8, Ano = 2000 },
-                new Games() { Id = "/playstation-4/red-dead-redemption-2", Titulo= "Red Dead Redemption 2 (PS4)", Nota=97.8, Ano = 2018 },
-                new Games() { Id = "/cube/metroid-prime", Titulo= "Metroid Prime (GC)", Nota=97.8, Ano = 2002 },
+                new Game() { Id = "/nintendo-64/the-legend-of-zelda-ocarina-of-time", Titulo= "The Legend of Zelda: Ocarina of Time (N64)", Nota=99.9, Ano = 1998 },
+                new Game() { Id = "/playstation/tony-hawks-pro-skater-2", Titulo= "Tony Hawk's Pro Skater 2 (PS)", Nota=98.9, Ano = 2000 },
+                new Game() { Id = "/playstation-3/grand-theft-auto-iv", Titulo= "Grand Theft Auto IV (PS3)", Nota=98.9, Ano = 2008 },
+                new Game() { Id = "/dreamcast/soulcalibur", Titulo= "SoulCalibur (DC)", Nota=98.9, Ano = 1999 },
+                new Game() { Id = "/wii/super-mario-galaxy", Titulo= "Super Mario Galaxy (WII)", Nota=97.9, Ano = 2007 },
+                new Game() { Id = "/wii/super-mario-galaxy-2", Titulo= "Super Mario Galaxy 2 (WII)", Nota=97.9, Ano = 2010 },
+                new Game() { Id = "/xbox-one/red-dead-redemption-2", Titulo= "Red Dead Redemption 2 (XONE)", Nota=97.9, Ano = 2018 },
+                new Game() { Id = "/xbox-one/grand-theft-auto-v", Titulo= "Grand Theft Auto V (XONE)", Nota=97.9, Ano = 2014 },
+                new Game() { Id = "/playstation-3/grand-theft-auto-v", Titulo= "Grand Theft Auto V (PS3)", Nota=97.9, Ano = 2013 },
+                new Game() { Id = "/xbox-360/grand-theft-auto-v", Titulo= "Grand Theft Auto V (X360)", Nota=97.0, Ano = 2013 },
+                new Game() { Id = "/dreamcast/tony-hawks-pro-skater-2", Titulo= "Tony Hawk's Pro Skater 2 (DC)", Nota=97.0, Ano = 2000 },
+                new Game() { Id = "/switch/the-legend-of-zelda-breath-of-the-wild", Titulo= "The Legend of Zelda: Breath of the Wild (Switch)", Nota=97.8, Ano = 2017 },
+                new Game() { Id = "/playstation-2/tony-hawks-pro-skater-3", Titulo= "Tony Hawk's Pro Skater 3 (PS2)", Nota=97.8, Ano = 2001 },
+                new Game() { Id = "/nintendo-64/perfect-dark", Titulo= "Perfect Dark (N64)", Nota=97.8, Ano = 2000 },
+                new Game() { Id = "/playstation-4/red-dead-redemption-2", Titulo= "Red Dead Redemption 2 (PS4)", Nota=97.8, Ano = 2018 },
+                new Game() { Id = "/cube/metroid-prime", Titulo= "Metroid Prime (GC)", Nota=97.8, Ano = 2002 },
             };
 
             return games;
         }
 
-        public static List<Games> SelecionarOitoGamesDistintosParaDisputa(List<Games> games)
+        public static List<Game> SelecionarOitoGamesDistintosParaDisputa(List<Game> games)
         {
-            List<Games> gamesSelecionados = null;
+            List<Game> gamesSelecionados = null;
             if (games != null)
             {
                 var random = new Random();
-                gamesSelecionados = new List<Games>();
+                gamesSelecionados = new List<Game>();
                 for (int i = 0; i < games.ToList().Count(); i++)
                 {
                     if (gamesSelecionados.Count() == 8)
@@ -84,68 +78,5 @@ namespace Lambda3.Games.Console
 
             return gamesSelecionados;
         }
-
-        public static List<Games> Classificacao(List<Games> games)
-        {
-            if (games == null)
-                throw new Exception("Lista de Games não pode estar vazia");
-
-            Games game1 = null;
-            Games game2 = null;
-            int count = games.Count() - 1;
-
-            List<Games> classificados = new List<Games>();
-
-            for (int i = 0; i < games.ToList().Count(); i++)
-            {
-                game1 = games[i];
-                game2 = games[count];
-
-                if (game1.Nota == game2.Nota)
-                {
-                    if (game1.Ano == game2.Ano)
-                    {
-                        classificados.Add(games.OrderBy(e => e.Titulo).FirstOrDefault());
-                    }
-                    else if (game1.Ano > game2.Ano)
-                        classificados.Add(game1);
-                    else
-                        classificados.Add(game2);
-                }
-                else if (game1.Nota > game2.Nota)
-                {
-                    classificados.Add(game1);
-                }
-                else
-                    classificados.Add(game2);
-
-                if ((count - i) == 1)
-                    break;
-
-                count--;
-            }
-
-            if(classificados.Count() == 1)
-            {
-                var segundoLugar = games.First(e => !classificados.Contains(e));
-                classificados.Add(segundoLugar);
-                return classificados;
-            }
-
-            return Classificacao(classificados);
-        }
-
-        //public static List<Games> ClassificacaoFinal(List<Games> finalistas)
-        //{
-        //    var classificacaoFinal = new List<Games>();
-        //    var primeiroLugar = Classificacao(finalistas).FirstOrDefault();
-
-        //    classificacaoFinal.Add(primeiroLugar);
-
-        //    var segundoLugar = finalistas.Where(e => e.Id != primeiroLugar.Id).FirstOrDefault();
-        //    classificacaoFinal.Add(segundoLugar);
-
-        //    return classificacaoFinal;
-        //}
     }
 }

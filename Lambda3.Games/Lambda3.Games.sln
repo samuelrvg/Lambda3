@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lambda3.Games.Api", "Lambda3.Games.Api\Lambda3.Games.Api.csproj", "{D0F707FA-52B2-4169-98DB-CBC3EDE8C4E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lambda3.Games.Console", "Lambda3.Games.Console\Lambda3.Games.Console.csproj", "{26546902-02D7-4A32-85B4-E29B7FA036D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lambda3.Games.Tests", "Lambda3.Games.Tests\Lambda3.Games.Tests.csproj", "{C73520D3-15B3-4DAC-8A51-1457CE624087}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lambda3.Games.Tests", "Lambda3.Games.Tests\Lambda3.Games.Tests.csproj", "{C73520D3-15B3-4DAC-8A51-1457CE624087}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lambda3.Games.Dominio", "Lambda3.Games.Dominio\Lambda3.Games.Dominio.csproj", "{D16781AF-4641-4501-9D7C-6F387CFBAE71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lambda3.Games.Dominio", "Lambda3.Games.Dominio\Lambda3.Games.Dominio.csproj", "{D16781AF-4641-4501-9D7C-6F387CFBAE71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lambda3.Games.Console", "Lambda3.Games.Console\Lambda3.Games.Console.csproj", "{F7E4BE27-E8E8-4B61-8652-448F30DA33A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		{D0F707FA-52B2-4169-98DB-CBC3EDE8C4E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0F707FA-52B2-4169-98DB-CBC3EDE8C4E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0F707FA-52B2-4169-98DB-CBC3EDE8C4E5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{26546902-02D7-4A32-85B4-E29B7FA036D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26546902-02D7-4A32-85B4-E29B7FA036D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26546902-02D7-4A32-85B4-E29B7FA036D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26546902-02D7-4A32-85B4-E29B7FA036D0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C73520D3-15B3-4DAC-8A51-1457CE624087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C73520D3-15B3-4DAC-8A51-1457CE624087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C73520D3-15B3-4DAC-8A51-1457CE624087}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{D16781AF-4641-4501-9D7C-6F387CFBAE71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D16781AF-4641-4501-9D7C-6F387CFBAE71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D16781AF-4641-4501-9D7C-6F387CFBAE71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7E4BE27-E8E8-4B61-8652-448F30DA33A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7E4BE27-E8E8-4B61-8652-448F30DA33A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7E4BE27-E8E8-4B61-8652-448F30DA33A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7E4BE27-E8E8-4B61-8652-448F30DA33A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
