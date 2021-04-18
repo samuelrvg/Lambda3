@@ -8,13 +8,21 @@ namespace Lambda3.Games.Dominio.Service
     public class GameService
     {
         private const int vencedor = 1;
+        private const int quantidadeMinimaParaListaDeGames = 8;
+
         public List<Game> Classificacao(List<Game> games)
         {
             if (games == null)
-                throw new Exception("Lista de Games não pode estar vazia!");
+                throw new NullReferenceException("Lista de Games não pode estar vazia!");
 
             if(games.Count() % 2 == 1)
                 throw new Exception("A lista não pode ter Games impares!");
+
+            if (games.Count() > quantidadeMinimaParaListaDeGames)
+                throw new Exception($"O minimo de games permitidos é {quantidadeMinimaParaListaDeGames}");
+
+            if (games.Count() == quantidadeMinimaParaListaDeGames)
+                games = games.OrderBy(g => g.Titulo).ToList();
 
             Game game1 = null;
             Game game2 = null;
