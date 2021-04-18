@@ -65,8 +65,19 @@ export default {
         this.checkedGames.includes(e.id)
       );
 
-      const data = await this.$axios.$post("game", filterGamesChecked);
-      // console.log("vencedores", data);
+      try {
+        const data = await this.$axios.$post("game", filterGamesChecked);
+
+        this.$router.push({
+          name: "resultado",
+          params: {
+            data: data.map(g => g.titulo)
+          }
+        });
+      } catch (error) {
+        console.log("err", error);
+        alert("Ocorreu um erro!!!");
+      }
     }
   }
 };

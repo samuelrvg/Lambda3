@@ -2,7 +2,7 @@
   <div>
     <b-card-group deck class="mb-3">
       <b-card border-variant="dark" header="1º Lugar" align="center">
-        <b-card-text>Game 1</b-card-text>
+        <b-card-text>{{ primeiroLugar }}</b-card-text>
       </b-card>
     </b-card-group>
     <b-card-group deck>
@@ -13,7 +13,7 @@
         header-text-variant="danger"
         align="center"
       >
-        <b-card-text>Game 2</b-card-text>
+        <b-card-text>{{ segundoLugar }}</b-card-text>
       </b-card>
     </b-card-group>
   </div>
@@ -23,9 +23,13 @@
 export default {
   data() {
     return {
-      vencedores: []
+      primeiroLugar: {},
+      segundoLugar: {}
     };
   },
-  mounted() {}
+  mounted() {
+    this.primeiroLugar = this.$route.params.data[0];
+    this.segundoLugar = this.$route.params.data[1];
+  }
 };
 </script>

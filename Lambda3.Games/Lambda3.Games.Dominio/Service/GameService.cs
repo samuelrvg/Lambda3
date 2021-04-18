@@ -8,7 +8,7 @@ namespace Lambda3.Games.Dominio.Service
     public class GameService
     {
         private const int vencedor = 1;
-        private const int quantidadeMinimaParaListaDeGames = 8;
+        public int quantidadeMinimaParaListaDeGames { get; private set; } = 8;
 
         public List<Game> Classificacao(List<Game> games)
         {
