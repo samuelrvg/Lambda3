@@ -65,7 +65,7 @@ export default {
         this.checkedGames.includes(e.id)
       );
 
-      const data = await this.$axios.$post("games", filterGamesChecked);
+      const data = await this.$axios.$post("game", filterGamesChecked);
       // console.log("vencedores", data);
     }
   }

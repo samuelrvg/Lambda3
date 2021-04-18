@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 using Lambda3.Games.Dominio.Model;
 using Lambda3.Games.Dominio.Service;
 
@@ -8,12 +7,11 @@ namespace Lambda3.Games.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class GamesController : ControllerBase
+    public class GameController : ControllerBase
     {
         private readonly GameService _gameService;
-        private const int quantidadeMinimaParaListaDeGames = 8;
 
-        public GamesController()
+        public GameController()
         {
             _gameService = new GameService();
         }
@@ -23,17 +21,9 @@ namespace Lambda3.Games.Api.Controllers
         {
             try
             {
-                if (games == null)
-                    BadRequest();
+                var finalistas = _gameService.Classificacao(games);
 
-                if (games.Count() == quantidadeMinimaParaListaDeGames)
-                {
-                    var finalistas = _gameService.Classificacao(games.OrderBy(g => g.Titulo).ToList());
-
-                    return Ok(finalistas);
-                }
-
-                return NotFound();
+                return Ok(finalistas);
             }
             catch (System.Exception e)
             {
