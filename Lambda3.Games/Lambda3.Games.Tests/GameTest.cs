@@ -92,9 +92,9 @@ namespace Lambda3.Games.Tests
                 new Game() {Id = "/dreamcast/soulcalibur", Titulo= "SoulCalibur (DC)", Nota=98.9, Ano = 1999 }
             };
 
-            var primeiroGrupo = _gameService.Classificacao(ClassificaVencedores);
-            var segundoGrupo = _gameService.Classificacao(ClassificaVencedores);
-            var finalistas = _gameService.ClassificacaoFinal(ClassificaVencedores);
+            //var primeiroGrupo = _gameService.Classificacao(ClassificaVencedores);
+            //var segundoGrupo = _gameService.Classificacao(ClassificaVencedores);
+            var finalistas = _gameService.Classificacao(ClassificaVencedores);
 
             Assert.AreEqual(JsonConvert.SerializeObject(mockGameTest), JsonConvert.SerializeObject(finalistas));
         }

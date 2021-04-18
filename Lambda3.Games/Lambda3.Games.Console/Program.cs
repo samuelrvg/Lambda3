@@ -21,9 +21,9 @@ namespace Lambda3.Games.Console
 
             var gamesSelecionados = SelecionarOitoGamesDistintosParaDisputa(games).OrderBy(g => g.Titulo).ToList();
 
-            var primeiraFaseDeClassificacao = Classificacao(gamesSelecionados);
-            var segundaFaseDeClassificacao = Classificacao(primeiraFaseDeClassificacao);
-            var classificacao = ClassificacaoFinal(segundaFaseDeClassificacao);
+            //var primeiraFaseDeClassificacao = Classificacao(gamesSelecionados);
+            //var segundaFaseDeClassificacao = Classificacao(primeiraFaseDeClassificacao);
+            var classificacao = Classificacao(gamesSelecionados);
 
             WriteLine("-------PRIMEIRO LUGAR-------");
             WriteLine("Titulo: {0}", classificacao[0].Titulo);
@@ -125,21 +125,27 @@ namespace Lambda3.Games.Console
                 count--;
             }
 
+            if(classificados.Count() == 1)
+            {
+                var segundoLugar = games.First(e => !classificados.Contains(e));
+                classificados.Add(segundoLugar);
+                return classificados;
+            }
 
-            return classificados;
+            return Classificacao(classificados);
         }
 
-        public static List<Games> ClassificacaoFinal(List<Games> finalistas)
-        {
-            var classificacaoFinal = new List<Games>();
-            var primeiroLugar = Classificacao(finalistas).FirstOrDefault();
+        //public static List<Games> ClassificacaoFinal(List<Games> finalistas)
+        //{
+        //    var classificacaoFinal = new List<Games>();
+        //    var primeiroLugar = Classificacao(finalistas).FirstOrDefault();
 
-            classificacaoFinal.Add(primeiroLugar);
+        //    classificacaoFinal.Add(primeiroLugar);
 
-            var segundoLugar = finalistas.Where(e => e.Id != primeiroLugar.Id).FirstOrDefault();
-            classificacaoFinal.Add(segundoLugar);
+        //    var segundoLugar = finalistas.Where(e => e.Id != primeiroLugar.Id).FirstOrDefault();
+        //    classificacaoFinal.Add(segundoLugar);
 
-            return classificacaoFinal;
-        }
+        //    return classificacaoFinal;
+        //}
     }
 }

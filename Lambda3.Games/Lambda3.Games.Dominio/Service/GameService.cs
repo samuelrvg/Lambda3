@@ -7,6 +7,7 @@ namespace Lambda3.Games.Dominio.Service
 {
     public class GameService
     {
+        private const int vencedor = 1;
         public List<Game> Classificacao(List<Game> games)
         {
             if (games == null)
@@ -17,14 +18,14 @@ namespace Lambda3.Games.Dominio.Service
 
             Game game1 = null;
             Game game2 = null;
-            int count = games.Count() - 1;
+            int countUltimosGamesDaLista = games.Count() - 1;
 
             var classificados = new List<Game>();
 
             for (int i = 0; i < games.ToList().Count(); i++)
             {
                 game1 = games[i];
-                game2 = games[count];
+                game2 = games[countUltimosGamesDaLista];
 
                 if (game1.Nota == game2.Nota)
                 {
@@ -51,27 +52,35 @@ namespace Lambda3.Games.Dominio.Service
                 else
                     classificados.Add(game2);
 
-                if ((count - i) == 1)
+                if ((countUltimosGamesDaLista - i) == 1)
                     break;
 
-                count--;
+                countUltimosGamesDaLista--;
             }
 
-            return classificados;
+            if (classificados.Count() == vencedor)
+            {
+                var segundoLugar = games.First(e => !classificados.Contains(e));
+                classificados.Add(segundoLugar);
+
+                return classificados;
+            }
+
+            return Classificacao(classificados);
         }
 
-        public List<Game> ClassificacaoFinal(List<Game> finalistas)
-        {
-            var classificacaoFinal = new List<Game>();
+        //public List<Game> ClassificacaoFinal(List<Game> finalistas)
+        //{
+        //    var classificacaoFinal = new List<Game>();
 
-            var primeiroLugar = Classificacao(finalistas).FirstOrDefault();
-            classificacaoFinal.Add(primeiroLugar);
+        //    var primeiroLugar = Classificacao(finalistas).FirstOrDefault();
+        //    classificacaoFinal.Add(primeiroLugar);
 
-            var segundoLugar = finalistas.Where(e => e.Id != primeiroLugar.Id).FirstOrDefault();
-            classificacaoFinal.Add(segundoLugar);
+        //    var segundoLugar = finalistas.Where(e => e.Id != primeiroLugar.Id).FirstOrDefault();
+        //    classificacaoFinal.Add(segundoLugar);
 
-            return classificacaoFinal;
-        }
+        //    return classificacaoFinal;
+        //}
     }
 }
     

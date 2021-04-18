@@ -28,9 +28,7 @@ namespace Lambda3.Games.Api.Controllers
 
                 if (games.Count() == quantidadeMinimaParaListaDeGames)
                 {
-                    var primeiroGrupo = _gameService.Classificacao(games.OrderBy(g => g.Titulo).ToList());
-                    var segundoGrupo = _gameService.Classificacao(primeiroGrupo);
-                    var finalistas = _gameService.ClassificacaoFinal(segundoGrupo);
+                    var finalistas = _gameService.Classificacao(games.OrderBy(g => g.Titulo).ToList());
 
                     return Ok(finalistas);
                 }
