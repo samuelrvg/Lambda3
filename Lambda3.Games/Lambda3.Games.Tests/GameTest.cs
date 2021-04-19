@@ -12,6 +12,7 @@ namespace Lambda3.Games.Tests
     {
         private List<Game> GamesComNotasIguais { get; set; }
         private List<Game> GamesComNotasEAnoIguais { get; set; }
+        private List<Game> GamesComNotasIguaiEAnoDiferente { get; set; }
         private List<Game> GamesComNotaMaior { get; set; }
         private List<Game> ClassificaVencedores { get; set; }
         private List<Game> MinimoPermitidoDeGames { get; set; }
@@ -32,6 +33,12 @@ namespace Lambda3.Games.Tests
                     {
                         new Game() { Id = "/nintendo-64/the-legend-of-zelda-ocarina-of-time", Titulo= "The Legend of Zelda: Ocarina of Time (N64)", Nota=98.9, Ano = 1998 },
                         new Game() { Id = "/dreamcast/soulcalibur", Titulo= "SoulCalibur (DC)", Nota=98.9, Ano = 1998 },
+                    };
+
+            GamesComNotasIguaiEAnoDiferente = new List<Game>()
+                    {
+                        new Game() { Id = "/nintendo-64/the-legend-of-zelda-ocarina-of-time", Titulo= "The Legend of Zelda: Ocarina of Time (N64)", Nota=98.9, Ano = 1998 },
+                        new Game() { Id = "/dreamcast/soulcalibur", Titulo= "SoulCalibur (DC)", Nota=98.9, Ano = 2001 },
                     };
 
             GamesComNotaMaior = new List<Game>()
@@ -68,7 +75,7 @@ namespace Lambda3.Games.Tests
         {
             var mockGameTest = new Game() { Id = "/playstation/tony-hawks-pro-skater-2", Titulo = "Tony Hawk's Pro Skater 2 (PS)", Nota = 98.9, Ano = 2000 };
 
-            var games = _gameService.Classificacao(GamesComNotasIguais);
+            var games = _gameService.ClassificarGames(GamesComNotasIguais);
 
             Assert.AreEqual(JsonConvert.SerializeObject(mockGameTest), JsonConvert.SerializeObject(games[0]));
         }
@@ -78,9 +85,23 @@ namespace Lambda3.Games.Tests
         {
             var mockGameTest = new Game() { Id = "/dreamcast/soulcalibur", Titulo = "SoulCalibur (DC)", Nota = 98.9, Ano = 1998 };
 
-            var games = _gameService.Classificacao(GamesComNotasEAnoIguais);
+            var games = _gameService.ClassificarGames(GamesComNotasEAnoIguais);
 
             Assert.AreEqual(JsonConvert.SerializeObject(mockGameTest), JsonConvert.SerializeObject(games[0]));
+        }
+
+        [TestMethod]
+        public void GamesComNotasIguaiEAnoDiferenteTest()
+        {
+            var mockGameTest = new List<Game>()
+                    {
+                        new Game() { Id = "/dreamcast/soulcalibur", Titulo= "SoulCalibur (DC)", Nota=98.9, Ano = 2001 },
+                        new Game() { Id = "/nintendo-64/the-legend-of-zelda-ocarina-of-time", Titulo= "The Legend of Zelda: Ocarina of Time (N64)", Nota=98.9, Ano = 1998 },
+                    };
+
+            var games = _gameService.ClassificarGames(GamesComNotasIguaiEAnoDiferente);
+
+            Assert.AreEqual(JsonConvert.SerializeObject(mockGameTest), JsonConvert.SerializeObject(games));
         }
 
         [TestMethod]
@@ -88,7 +109,7 @@ namespace Lambda3.Games.Tests
         {
             var mockGameTest = new Game() { Id = "/playstation/tony-hawks-pro-skater-2", Titulo = "Tony Hawk's Pro Skater 2 (PS)", Nota = 99, Ano = 1998 };
 
-            var games = _gameService.Classificacao(GamesComNotaMaior);
+            var games = _gameService.ClassificarGames(GamesComNotaMaior);
 
             Assert.AreEqual(JsonConvert.SerializeObject(mockGameTest), JsonConvert.SerializeObject(games[0]));
         }
@@ -99,12 +120,10 @@ namespace Lambda3.Games.Tests
             var mockGameTest = new List<Game>()
             {
                 new Game() {Id = "/nintendo-64/the-legend-of-zelda-ocarina-of-time", Titulo= "The Legend of Zelda: Ocarina of Time (N64)", Nota=99.9, Ano = 1998 },
-                new Game() {Id = "/dreamcast/soulcalibur", Titulo= "SoulCalibur (DC)", Nota=98.9, Ano = 1999 }
+                new Game() {Id = "/dreamcast/soulcalibur", Titulo= "SoulCalibur (DC)", Nota=98.9, Ano = 1999 },
             };
 
-            //var primeiroGrupo = _gameService.Classificacao(ClassificaVencedores);
-            //var segundoGrupo = _gameService.Classificacao(ClassificaVencedores);
-            var finalistas = _gameService.Classificacao(ClassificaVencedores);
+            var finalistas = _gameService.ClassificarGames(ClassificaVencedores);
 
             Assert.AreEqual(JsonConvert.SerializeObject(mockGameTest), JsonConvert.SerializeObject(finalistas));
         }
@@ -121,7 +140,7 @@ namespace Lambda3.Games.Tests
 
             Assert.ThrowsException<Exception>(() =>
             {
-                _gameService.Classificacao(mockGameTest);
+                _gameService.ClassificarGames(mockGameTest);
             });
         }
 
@@ -132,7 +151,7 @@ namespace Lambda3.Games.Tests
 
             Assert.ThrowsException<NullReferenceException>(() =>
             {
-                _gameService.Classificacao(mockGameTest);
+                _gameService.ClassificarGames(mockGameTest);
             }, "Lista de Games não pode estar vazia");
         }
 
@@ -141,7 +160,7 @@ namespace Lambda3.Games.Tests
         {
             Assert.ThrowsException<Exception>(() =>
             {
-                _gameService.Classificacao(MinimoPermitidoDeGames);
+                _gameService.ClassificarGames(MinimoPermitidoDeGames);
             });
         }
     }

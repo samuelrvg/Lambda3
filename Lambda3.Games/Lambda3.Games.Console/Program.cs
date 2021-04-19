@@ -16,7 +16,7 @@ namespace Lambda3.Games.Console
 
             var gamesSelecionados = SelecionarOitoGamesDistintosParaDisputa(games);
 
-            var classificacao = gameService.Classificacao(gamesSelecionados);
+            var classificacao = gameService.ClassificarGames(gamesSelecionados);
 
             WriteLine("-------PRIMEIRO LUGAR-------");
             WriteLine("Titulo: {0}", classificacao[0].Titulo);
