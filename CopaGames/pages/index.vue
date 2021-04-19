@@ -3,7 +3,7 @@
     <b-row class="mb-2">
       <b-col md="3"
         ><p class="font-weight-normal">
-          Selecionados: {{ selecionados }} games
+          Selecionados: {{ this.checkedGames.length }} games
         </p></b-col
       >
       <b-col md="3" offset-md="6">
@@ -44,22 +44,11 @@ export default {
   data() {
     return {
       games: [],
-      selecionados: 0,
       checkedGames: []
     };
   },
   async mounted() {
     await this.asyncData();
-  },
-  watch: {
-    checkedGames() {
-      if (this.checkedGames.length <= 8) {
-        this.selecionados = this.checkedGames.length;
-      } else {
-        alert("Os 8 games já foram selecionados!");
-      }
-      // console.log("checked");
-    }
   },
   methods: {
     async asyncData() {
@@ -69,12 +58,16 @@ export default {
       this.games = _.orderBy(data, "ano", "asc");
     },
     async submit() {
-      var filterGamesChecked = this.games.filter(e =>
+      if (!(this.checkedGames.length == 8)) {
+        alert("Selecione 8 games!");
+        return;
+      }
+      var checkedGamesFilter = this.games.filter(e =>
         this.checkedGames.includes(e.id)
       );
 
       try {
-        const data = await this.$axios.$post("game", filterGamesChecked);
+        const data = await this.$axios.$post("game", checkedGamesFilter);
 
         this.$router.push({
           name: "resultado",
