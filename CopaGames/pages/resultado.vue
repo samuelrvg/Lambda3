@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-card-group deck class="mb-3">
-      <b-card border-variant="dark" header="1º Lugar" align="center">
+      <b-card border-variant="success" header="1º Lugar" align="center">
         <b-card-text>{{ primeiroLugar }}</b-card-text>
       </b-card>
     </b-card-group>

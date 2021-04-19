@@ -2,24 +2,31 @@
   <div>
     <b-row class="mb-2">
       <b-col md="3"
-        ><p>Selecionados {{ selecionados }}</p></b-col
+        ><p class="font-weight-normal">
+          Selecionados: {{ selecionados }} games
+        </p></b-col
       >
       <b-col md="3" offset-md="6">
         <b-button @click.prevent="submit()">Gerar Meu Campeonato</b-button>
       </b-col>
     </b-row>
 
-    <div class="row">
+    <div class="row mb-2">
       <div
         v-for="(game, index) in games"
         :key="index"
-        class="col-md-3 col-6 my-1"
+        class="col-md-3 col-6 my-2"
       >
         <div class="h-100">
           <!-- <card :game="game" :checkedGames="checkedGames"></card> -->
-          <b-card :sub-title="game.titulo">
-            <input type="checkbox" :value="game.id" v-model="checkedGames" />
-            <label>Selecionar game</label><br />
+          <b-card :header="game.ano">
+            <b-card-text class="text-truncate">
+              {{ game.titulo }}
+            </b-card-text>
+            <div>
+              <input type="checkbox" :value="game.id" v-model="checkedGames" />
+              <label>Selecionar game</label><br />
+            </div>
           </b-card>
         </div>
       </div>
@@ -28,6 +35,7 @@
 </template>
 
 <script>
+import _ from "lodash";
 import card from "../components/card";
 export default {
   components: {
@@ -58,7 +66,7 @@ export default {
       const data = await this.$axios.$get(
         "https://l3-processoseletivo.azurewebsites.net/api/Competidores?copa=games"
       );
-      this.games = data;
+      this.games = _.orderBy(data, "ano", "asc");
     },
     async submit() {
       var filterGamesChecked = this.games.filter(e =>
