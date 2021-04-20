@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  app:
+    container_name: copa-game-spa
+    build: ./copagames
+    command: ["yarn", "dev"]
+    volumes:
+      - ./copagames:/src/app
+    working_dir: /src/app
+    ports:
+      - "3000:3000"
+    environment:
+      HOST: 0.0.0.0
+
+  api:
+    container_name: copa-game-api
+    build: ./lambda3.games
+    ports:
+      - 8080:80
+    image: copagamesapi:v1
