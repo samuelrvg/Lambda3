@@ -4,7 +4,9 @@ services:
   app:
     container_name: copa-game-spa
     build: ./copagames
-    command: ["yarn", "dev"]
+    command: >
+      bash -c "yarn
+      && yarn dev"
     volumes:
       - ./copagames:/src/app
     working_dir: /src/app
