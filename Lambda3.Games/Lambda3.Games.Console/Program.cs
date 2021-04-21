@@ -1,5 +1,5 @@
-﻿using Lambda3.Games.Core.Model;
-using Lambda3.Games.Core.Service;
+﻿using Lambda3.Games.Core.Models;
+using Lambda3.Games.Core.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,14 +19,14 @@ namespace Lambda3.Games.Console
             var classificacao = gameService.ClassificarJogos(gamesSelecionados);
 
             WriteLine("-------PRIMEIRO LUGAR-------");
-            WriteLine("Titulo: {0}", classificacao[0].Titulo);
-            WriteLine("Nota: {0}", classificacao[0].Nota);
-            WriteLine("Ano: {0}", classificacao[0].Ano);
+            WriteLine($"Titulo: {classificacao[0].Titulo}");
+            WriteLine($"Nota: {classificacao[0].Nota}");
+            WriteLine($"Ano: {classificacao[0].Ano}");
 
             WriteLine("-------SEGUNDO LUGAR-------");
-            WriteLine("Titulo: {0}", classificacao[1].Titulo);
-            WriteLine("Nota: {0}", classificacao[1].Nota);
-            WriteLine("Ano: {0}", classificacao[1].Ano);
+            WriteLine($"Titulo: {classificacao[1].Titulo}");
+            WriteLine($"Nota: {classificacao[1].Nota}");
+            WriteLine($"Ano: {classificacao[1].Ano}");
 
             ReadKey();
         }

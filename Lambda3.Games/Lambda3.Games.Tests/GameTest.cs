@@ -1,5 +1,5 @@
-using Lambda3.Games.Core.Model;
-using Lambda3.Games.Core.Service;
+using Lambda3.Games.Core.Models;
+using Lambda3.Games.Core.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System.Collections.Generic;

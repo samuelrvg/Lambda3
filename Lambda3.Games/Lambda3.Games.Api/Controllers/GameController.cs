@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using Lambda3.Games.Core.Model;
-using Lambda3.Games.Core.Service;
+using Lambda3.Games.Core.Models;
+using Lambda3.Games.Core.Services;
 using Lambda3.Games.Core.Validators;
 using Microsoft.Extensions.Logging;
 

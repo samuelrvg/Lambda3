@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Lambda3.Games.Core.Model;
+using Lambda3.Games.Core.Models;
 
-namespace Lambda3.Games.Core.Service
+namespace Lambda3.Games.Core.Services
 {
     public class GameService
     {
