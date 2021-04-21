@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Lambda3.Games.Core.Model;
 using System.Linq;
+using Lambda3.Games.Core.Model;
 
 namespace Lambda3.Games.Core.Service
 {
@@ -19,12 +19,12 @@ namespace Lambda3.Games.Core.Service
 
             jogos = jogos.OrderBy(g => g.Titulo).ToList();
 
-            var classificados = new List<Game>();
+            var quartasDeFinal = new List<Game>();
             int indiceUltimosJogosDaLista = jogos.Count - 1;
 
             for (int i = 0; i < jogos.Count; i++)
             {
-                CompararJogos(classificados, jogos[i], jogos[indiceUltimosJogosDaLista]);
+                CompararJogos(quartasDeFinal, jogos[i], jogos[indiceUltimosJogosDaLista]);
 
                 if ((indiceUltimosJogosDaLista - i) == 1)
                     break;
@@ -32,14 +32,14 @@ namespace Lambda3.Games.Core.Service
                 indiceUltimosJogosDaLista--;
             }
 
-            var segundoRound = new List<Game>();
-            CompararJogos(segundoRound, classificados[0], classificados[1]);
-            CompararJogos(segundoRound, classificados[2], classificados[3]);
+            var semiFinal = new List<Game>();
+            CompararJogos(semiFinal, quartasDeFinal[0], quartasDeFinal[2]);
+            CompararJogos(semiFinal, quartasDeFinal[1], quartasDeFinal[3]);
 
             var final = new List<Game>();
-            CompararJogos(final, segundoRound[0], segundoRound[1]);
+            CompararJogos(final, semiFinal[0], semiFinal[1]);
 
-            final.Add(segundoRound.FirstOrDefault(g => !(final.Contains(g))));
+            final.Add(semiFinal.FirstOrDefault(g => !(final.Contains(g))));
 
             return final;
         }
@@ -53,7 +53,7 @@ namespace Lambda3.Games.Core.Service
                 if (primeiroJogador.Ano == segundoJogador.Ano)
                 {
                     var orderGames = new List<Game>() { primeiroJogador, segundoJogador };
-                    jogos.Add(orderGames.OrderBy(e => e.Titulo).ToList()[0]);
+                    jogos.Add(orderGames.OrderBy(g => g.Titulo).ToList()[0]);
                 }
                 else if (primeiroJogador.Ano > segundoJogador.Ano)
                     jogos.Add(primeiroJogador);
