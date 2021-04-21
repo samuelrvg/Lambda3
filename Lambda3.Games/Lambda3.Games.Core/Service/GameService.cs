@@ -6,9 +6,6 @@ namespace Lambda3.Games.Core.Service
 {
     public class GameService
     {
-        private const int primeiroLugar = 1;
-        private int quantidadeMinimaParaListaDeGames { get; set; } = 8;
-
         public List<Game> ClassificarJogos(List<Game> jogos)
         {
             //if (jogos == null)
@@ -20,29 +17,14 @@ namespace Lambda3.Games.Core.Service
             //if (jogos.Count() > quantidadeMinimaParaListaDeGames)
             //    throw new Exception($"O minimo de games permitidos é {quantidadeMinimaParaListaDeGames}");
 
-            if (jogos.Count() == quantidadeMinimaParaListaDeGames)
-                jogos = jogos.OrderBy(g => g.Titulo).ToList();
-
-            Game primeiroJogador = null;
-            Game segundoJogador = null;
-            int indiceUltimosJogosDaLista = jogos.Count() - 1;
+            jogos = jogos.OrderBy(g => g.Titulo).ToList();
 
             var classificados = new List<Game>();
+            int indiceUltimosJogosDaLista = jogos.Count - 1;
 
-            for (int i = 0; i < jogos.ToList().Count(); i++)
+            for (int i = 0; i < jogos.Count; i++)
             {
-                primeiroJogador = jogos[i];
-                segundoJogador = jogos[indiceUltimosJogosDaLista];
-
-                if (primeiroJogador.Nota == segundoJogador.Nota && primeiroJogador.Ano == segundoJogador.Ano)
-                {
-                    var ordernaGames = new List<Game>() { primeiroJogador, segundoJogador };
-                    classificados.Add(ordernaGames.OrderBy(e => e.Titulo).FirstOrDefault());
-                }
-                else if (primeiroJogador.Nota > segundoJogador.Nota || primeiroJogador.Ano > segundoJogador.Ano)
-                    classificados.Add(primeiroJogador);
-                else
-                    classificados.Add(segundoJogador);
+                CompararJogos(classificados, jogos[i], jogos[indiceUltimosJogosDaLista]);
 
                 if ((indiceUltimosJogosDaLista - i) == 1)
                     break;
@@ -50,15 +32,40 @@ namespace Lambda3.Games.Core.Service
                 indiceUltimosJogosDaLista--;
             }
 
-            if (classificados.Count() == primeiroLugar)
-            {
-                var segundoLugar = jogos.First(e => !classificados.Contains(e));
-                classificados.Add(segundoLugar);
+            var segundoRound = new List<Game>();
+            CompararJogos(segundoRound, classificados[0], classificados[1]);
+            CompararJogos(segundoRound, classificados[2], classificados[3]);
 
-                return classificados;
-            }
+            var final = new List<Game>();
+            CompararJogos(final, segundoRound[0], segundoRound[1]);
 
-            return ClassificarJogos(classificados);
+            final.Add(segundoRound.FirstOrDefault(g => !(final.Contains(g))));
+
+            return final;
         }
+
+        private List<Game> CompararJogos(List<Game> jogos, Game primeiroJogador, Game segundoJogador)
+        {
+            if (primeiroJogador.Nota > segundoJogador.Nota)
+                jogos.Add(primeiroJogador);
+            else if (primeiroJogador.Nota == segundoJogador.Nota)
+            {
+                if (primeiroJogador.Ano == segundoJogador.Ano)
+                {
+                    var orderGames = new List<Game>() { primeiroJogador, segundoJogador };
+                    jogos.Add(orderGames.OrderBy(e => e.Titulo).ToList()[0]);
+                }
+                else if (primeiroJogador.Ano > segundoJogador.Ano)
+                    jogos.Add(primeiroJogador);
+                else
+                    jogos.Add(segundoJogador);
+            }
+            else
+                jogos.Add(segundoJogador);
+
+            return jogos;
+        }
+
     }
 }
+
