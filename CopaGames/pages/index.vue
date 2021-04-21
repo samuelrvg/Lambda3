@@ -7,7 +7,11 @@
         </p></b-col
       >
       <b-col md="3" offset-md="6">
-        <b-button @click.prevent="submit()">Gerar Meu Campeonato</b-button>
+        <b-button
+          @click.prevent="gerarCampeonato()"
+          :disabled="!(this.checkedGames.length === this.minimoParaIniciarJogo)"
+          >Gerar Meu Campeonato</b-button
+        >
       </b-col>
     </b-row>
 
@@ -19,7 +23,7 @@
       >
         <div class="h-100">
           <!-- <card :game="game" :checkedGames="checkedGames"></card> -->
-          <b-card :header="game.ano">
+          <b-card :header="`${game.ano}`">
             <b-card-text class="text-truncate">
               {{ game.titulo }}
             </b-card-text>
@@ -44,7 +48,8 @@ export default {
   data() {
     return {
       games: [],
-      checkedGames: []
+      checkedGames: [],
+      minimoParaIniciarJogo: 8
     };
   },
   async mounted() {
@@ -57,11 +62,7 @@ export default {
       );
       this.games = _.orderBy(data, "ano", "asc");
     },
-    async submit() {
-      if (!(this.checkedGames.length == 8)) {
-        alert("Selecione 8 games!");
-        return;
-      }
+    async gerarCampeonato() {
       var checkedGamesFilter = this.games.filter(e =>
         this.checkedGames.includes(e.id)
       );

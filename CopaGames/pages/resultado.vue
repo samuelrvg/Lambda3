@@ -23,13 +23,15 @@
 export default {
   data() {
     return {
-      primeiroLugar: {},
-      segundoLugar: {}
+      primeiroLugar: "Não definido!",
+      segundoLugar: "Não definido!"
     };
   },
   mounted() {
-    this.primeiroLugar = this.$route.params.data[0];
-    this.segundoLugar = this.$route.params.data[1];
+    if (this.$route.params.data) {
+      this.primeiroLugar = this.$route.params.data[0];
+      this.segundoLugar = this.$route.params.data[1];
+    }
   }
 };
 </script>
