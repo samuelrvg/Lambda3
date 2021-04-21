@@ -10,56 +10,56 @@ namespace Lambda3.Games.Dominio.Service
         private const int primeiroLugar = 1;
         public int quantidadeMinimaParaListaDeGames { get; private set; } = 8;
 
-        public List<Game> ClassificarGames(List<Game> games)
+        public List<Game> ClassificarJogos(List<Game> jogos)
         {
-            if (games == null)
+            if (jogos == null)
                 throw new NullReferenceException("Lista de Games não pode estar vazia!");
 
-            if (games.Count() % 2 == 1)
+            if (jogos.Count() % 2 == 1)
                 throw new Exception("A lista não pode ter Games impares!");
 
-            if (games.Count() > quantidadeMinimaParaListaDeGames)
+            if (jogos.Count() > quantidadeMinimaParaListaDeGames)
                 throw new Exception($"O minimo de games permitidos é {quantidadeMinimaParaListaDeGames}");
 
-            if (games.Count() == quantidadeMinimaParaListaDeGames)
-                games = games.OrderBy(g => g.Titulo).ToList();
+            if (jogos.Count() == quantidadeMinimaParaListaDeGames)
+                jogos = jogos.OrderBy(g => g.Titulo).ToList();
 
-            Game game1 = null;
-            Game game2 = null;
-            int indiceUltimosGamesDaLista = games.Count() - 1;
+            Game primeiroJogador = null;
+            Game segundoJogador = null;
+            int indiceUltimosJogosDaLista = jogos.Count() - 1;
 
             var classificados = new List<Game>();
 
-            for (int i = 0; i < games.ToList().Count(); i++)
+            for (int i = 0; i < jogos.ToList().Count(); i++)
             {
-                game1 = games[i];
-                game2 = games[indiceUltimosGamesDaLista];
+                primeiroJogador = jogos[i];
+                segundoJogador = jogos[indiceUltimosJogosDaLista];
 
-                if (game1.Nota == game2.Nota && game1.Ano == game2.Ano)
+                if (primeiroJogador.Nota == segundoJogador.Nota && primeiroJogador.Ano == segundoJogador.Ano)
                 {
-                    var ordernaGames = new List<Game>() { game1, game2 };
+                    var ordernaGames = new List<Game>() { primeiroJogador, segundoJogador };
                     classificados.Add(ordernaGames.OrderBy(e => e.Titulo).FirstOrDefault());
                 }
-                else if (game1.Nota > game2.Nota || game1.Ano > game2.Ano)
-                    classificados.Add(game1);
+                else if (primeiroJogador.Nota > segundoJogador.Nota || primeiroJogador.Ano > segundoJogador.Ano)
+                    classificados.Add(primeiroJogador);
                 else
-                    classificados.Add(game2);
+                    classificados.Add(segundoJogador);
 
-                if ((indiceUltimosGamesDaLista - i) == 1)
+                if ((indiceUltimosJogosDaLista - i) == 1)
                     break;
 
-                indiceUltimosGamesDaLista--;
+                indiceUltimosJogosDaLista--;
             }
 
             if (classificados.Count() == primeiroLugar)
             {
-                var segundoLugar = games.First(e => !classificados.Contains(e));
+                var segundoLugar = jogos.First(e => !classificados.Contains(e));
                 classificados.Add(segundoLugar);
 
                 return classificados;
             }
 
-            return ClassificarGames(classificados);
+            return ClassificarJogos(classificados);
         }
     }
 }

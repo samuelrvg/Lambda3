@@ -16,7 +16,7 @@ namespace Lambda3.Games.Console
 
             var gamesSelecionados = SelecionarOitoGamesDistintosParaDisputa(games);
 
-            var classificacao = gameService.ClassificarGames(gamesSelecionados);
+            var classificacao = gameService.ClassificarJogos(gamesSelecionados);
 
             WriteLine("-------PRIMEIRO LUGAR-------");
             WriteLine("Titulo: {0}", classificacao[0].Titulo);
@@ -56,27 +56,27 @@ namespace Lambda3.Games.Console
             return games;
         }
 
-        public static List<Game> SelecionarOitoGamesDistintosParaDisputa(List<Game> games)
+        public static List<Game> SelecionarOitoGamesDistintosParaDisputa(List<Game> jogos)
         {
-            List<Game> gamesSelecionados = null;
-            if (games != null)
+            List<Game> jogosSelecionados = null;
+            if (jogos != null)
             {
                 var random = new Random();
-                gamesSelecionados = new List<Game>();
-                for (int i = 0; i < games.ToList().Count(); i++)
+                jogosSelecionados = new List<Game>();
+                for (int i = 0; i < jogos.ToList().Count(); i++)
                 {
-                    if (gamesSelecionados.Count() == 8)
+                    if (jogosSelecionados.Count() == 8)
                         break;
 
-                    var indice = random.Next(0, games.Count());
-                    var game = games[indice];
+                    var indice = random.Next(0, jogos.Count());
+                    var jogo = jogos[indice];
 
-                    gamesSelecionados.Add(game);
-                    games.Remove(game);
+                    jogosSelecionados.Add(jogo);
+                    jogos.Remove(jogo);
                 }
             }
 
-            return gamesSelecionados;
+            return jogosSelecionados;
         }
     }
 }

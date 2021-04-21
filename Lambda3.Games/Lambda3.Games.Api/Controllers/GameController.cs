@@ -23,7 +23,7 @@ namespace Lambda3.Games.Api.Controllers
             {
                 if (games?.Count == _gameService.quantidadeMinimaParaListaDeGames)
                 {
-                    var finalistas = _gameService.ClassificarGames(games);
+                    var finalistas = _gameService.ClassificarJogos(games);
                     return Ok(finalistas);
                 }
 

@@ -75,7 +75,7 @@ namespace Lambda3.Games.Tests
         {
             var mockGameTest = new Game() { Id = "/playstation/tony-hawks-pro-skater-2", Titulo = "Tony Hawk's Pro Skater 2 (PS)", Nota = 98.9, Ano = 2000 };
 
-            var games = _gameService.ClassificarGames(GamesComNotasIguais);
+            var games = _gameService.ClassificarJogos(GamesComNotasIguais);
 
             Assert.AreEqual(JsonConvert.SerializeObject(mockGameTest), JsonConvert.SerializeObject(games[0]));
         }
@@ -85,7 +85,7 @@ namespace Lambda3.Games.Tests
         {
             var mockGameTest = new Game() { Id = "/dreamcast/soulcalibur", Titulo = "SoulCalibur (DC)", Nota = 98.9, Ano = 1998 };
 
-            var games = _gameService.ClassificarGames(GamesComNotasEAnoIguais);
+            var games = _gameService.ClassificarJogos(GamesComNotasEAnoIguais);
 
             Assert.AreEqual(JsonConvert.SerializeObject(mockGameTest), JsonConvert.SerializeObject(games[0]));
         }
@@ -99,7 +99,7 @@ namespace Lambda3.Games.Tests
                         new Game() { Id = "/nintendo-64/the-legend-of-zelda-ocarina-of-time", Titulo= "The Legend of Zelda: Ocarina of Time (N64)", Nota=98.9, Ano = 1998 },
                     };
 
-            var games = _gameService.ClassificarGames(GamesComNotasIguaiEAnoDiferente);
+            var games = _gameService.ClassificarJogos(GamesComNotasIguaiEAnoDiferente);
 
             Assert.AreEqual(JsonConvert.SerializeObject(mockGameTest), JsonConvert.SerializeObject(games));
         }
@@ -109,7 +109,7 @@ namespace Lambda3.Games.Tests
         {
             var mockGameTest = new Game() { Id = "/playstation/tony-hawks-pro-skater-2", Titulo = "Tony Hawk's Pro Skater 2 (PS)", Nota = 99, Ano = 1998 };
 
-            var games = _gameService.ClassificarGames(GamesComNotaMaior);
+            var games = _gameService.ClassificarJogos(GamesComNotaMaior);
 
             Assert.AreEqual(JsonConvert.SerializeObject(mockGameTest), JsonConvert.SerializeObject(games[0]));
         }
@@ -123,7 +123,7 @@ namespace Lambda3.Games.Tests
                 new Game() {Id = "/dreamcast/soulcalibur", Titulo= "SoulCalibur (DC)", Nota=98.9, Ano = 1999 },
             };
 
-            var finalistas = _gameService.ClassificarGames(ClassificaVencedores);
+            var finalistas = _gameService.ClassificarJogos(ClassificaVencedores);
 
             Assert.AreEqual(JsonConvert.SerializeObject(mockGameTest), JsonConvert.SerializeObject(finalistas));
         }
@@ -140,7 +140,7 @@ namespace Lambda3.Games.Tests
 
             Assert.ThrowsException<Exception>(() =>
             {
-                _gameService.ClassificarGames(mockGameTest);
+                _gameService.ClassificarJogos(mockGameTest);
             });
         }
 
@@ -151,7 +151,7 @@ namespace Lambda3.Games.Tests
 
             Assert.ThrowsException<NullReferenceException>(() =>
             {
-                _gameService.ClassificarGames(mockGameTest);
+                _gameService.ClassificarJogos(mockGameTest);
             }, "Lista de Games não pode estar vazia");
         }
 
@@ -160,7 +160,7 @@ namespace Lambda3.Games.Tests
         {
             Assert.ThrowsException<Exception>(() =>
             {
-                _gameService.ClassificarGames(MinimoPermitidoDeGames);
+                _gameService.ClassificarJogos(MinimoPermitidoDeGames);
             });
         }
     }
