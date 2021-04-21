@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lambda3.Games.Dominio\Lambda3.Games.Dominio.csproj" />
+    <ProjectReference Include="..\Lambda3.Games.Core\Lambda3.Games.Core.csproj" />
   </ItemGroup>
 
 </Project>

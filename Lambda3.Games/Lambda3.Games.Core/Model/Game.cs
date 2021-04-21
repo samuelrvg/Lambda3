@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Lambda3.Games.Dominio.Model
+namespace Lambda3.Games.Core.Model
 {
     public class Game
     {

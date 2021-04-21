@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lambda3.Games.Api", "Lambda
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lambda3.Games.Tests", "Lambda3.Games.Tests\Lambda3.Games.Tests.csproj", "{C73520D3-15B3-4DAC-8A51-1457CE624087}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lambda3.Games.Dominio", "Lambda3.Games.Dominio\Lambda3.Games.Dominio.csproj", "{D16781AF-4641-4501-9D7C-6F387CFBAE71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lambda3.Games.Core", "Lambda3.Games.Core\Lambda3.Games.Core.csproj", "{D16781AF-4641-4501-9D7C-6F387CFBAE71}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lambda3.Games.Console", "Lambda3.Games.Console\Lambda3.Games.Console.csproj", "{F7E4BE27-E8E8-4B61-8652-448F30DA33A1}"
 EndProject

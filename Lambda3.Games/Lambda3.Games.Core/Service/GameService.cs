@@ -1,25 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using Lambda3.Games.Dominio.Model;
+﻿using System.Collections.Generic;
+using Lambda3.Games.Core.Model;
 using System.Linq;
 
-namespace Lambda3.Games.Dominio.Service
+namespace Lambda3.Games.Core.Service
 {
     public class GameService
     {
         private const int primeiroLugar = 1;
-        public int quantidadeMinimaParaListaDeGames { get; private set; } = 8;
+        private int quantidadeMinimaParaListaDeGames { get; set; } = 8;
 
         public List<Game> ClassificarJogos(List<Game> jogos)
         {
-            if (jogos == null)
-                throw new NullReferenceException("Lista de Games não pode estar vazia!");
+            //if (jogos == null)
+            //    throw new NullReferenceException("Lista de Games não pode estar vazia!");
 
-            if (jogos.Count() % 2 == 1)
-                throw new Exception("A lista não pode ter Games impares!");
+            //if (jogos.Count() % 2 == 1)
+            //    throw new Exception("A lista não pode ter Games impares!");
 
-            if (jogos.Count() > quantidadeMinimaParaListaDeGames)
-                throw new Exception($"O minimo de games permitidos é {quantidadeMinimaParaListaDeGames}");
+            //if (jogos.Count() > quantidadeMinimaParaListaDeGames)
+            //    throw new Exception($"O minimo de games permitidos é {quantidadeMinimaParaListaDeGames}");
 
             if (jogos.Count() == quantidadeMinimaParaListaDeGames)
                 jogos = jogos.OrderBy(g => g.Titulo).ToList();
