@@ -20,6 +20,11 @@ http://localhost:8080/swagger/index.html
 
 http://localhost:3000/
 
+#### Testes back-end
+
+`cd Lambda3.Games`
+`dotnet test`
+
 #### Estrutura das pastas
 
 - Api
@@ -42,3 +47,10 @@ http://localhost:3000/
   - NuxtJs
   - Lodash
   - Bootstrap
+
+#### O que pode ser melhorado
+
+- Melhorar algoritmo de classificação dos games para ficar dinâmico, assim evita de passar o index manualmente de cada elemento do grupo.
+- Alterar visibilidade do método CompararJogos para private, não alterei para facilitar os testes. Usar Reflection ou Injeção de Dependência são soluções possíveis.
+- Executar testes juntamente com containers do docker.
+- Adicionar tests para GameValidator
