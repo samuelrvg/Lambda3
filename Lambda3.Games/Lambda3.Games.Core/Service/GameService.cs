@@ -44,7 +44,7 @@ namespace Lambda3.Games.Core.Service
             return final;
         }
 
-        private List<Game> CompararJogos(List<Game> jogos, Game primeiroJogador, Game segundoJogador)
+        public List<Game> CompararJogos(List<Game> jogos, Game primeiroJogador, Game segundoJogador)
         {
             if (primeiroJogador.Nota > segundoJogador.Nota)
                 jogos.Add(primeiroJogador);

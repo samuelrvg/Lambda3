@@ -9,12 +9,10 @@ namespace Lambda3.Games.Tests
     [TestClass]
     public class GameTest
     {
-        private List<Game> GamesComNotasIguais { get; set; }
+        private List<Game> GamesComNotasIguaisEAnosDiferentes { get; set; }
         private List<Game> GamesComNotasEAnoIguais { get; set; }
-        private List<Game> GamesComNotasIguaiEAnoDiferente { get; set; }
         private List<Game> GamesComNotaMaior { get; set; }
-        private List<Game> ClassificaVencedores { get; set; }
-        private List<Game> MinimoPermitidoDeGames { get; set; }
+        private List<Game> Jogos { get; set; }
         private GameService _gameService { get; set; }
 
         [TestInitialize]
@@ -22,59 +20,31 @@ namespace Lambda3.Games.Tests
         {
             _gameService = new GameService();
 
-            GamesComNotasIguais = new List<Game>()
-                    {
-                        new Game() { Id = "/nintendo-64/the-legend-of-zelda-ocarina-of-time", Titulo= "The Legend of Zelda: Ocarina of Time (N64)", Nota=98.9, Ano = 1998 },
-                        new Game() { Id = "/playstation/tony-hawks-pro-skater-2", Titulo= "Tony Hawk's Pro Skater 2 (PS)", Nota=98.9, Ano = 2000 },
-                    };
+            GamesComNotasIguaisEAnosDiferentes = new List<Game>();
 
-            GamesComNotasEAnoIguais = new List<Game>()
-                    {
-                        new Game() { Id = "/nintendo-64/the-legend-of-zelda-ocarina-of-time", Titulo= "The Legend of Zelda: Ocarina of Time (N64)", Nota=98.9, Ano = 1998 },
-                        new Game() { Id = "/dreamcast/soulcalibur", Titulo= "SoulCalibur (DC)", Nota=98.9, Ano = 1998 },
-                    };
+            GamesComNotasEAnoIguais = new List<Game>();
 
-            GamesComNotasIguaiEAnoDiferente = new List<Game>()
-                    {
-                        new Game() { Id = "/nintendo-64/the-legend-of-zelda-ocarina-of-time", Titulo= "The Legend of Zelda: Ocarina of Time (N64)", Nota=98.9, Ano = 1998 },
-                        new Game() { Id = "/dreamcast/soulcalibur", Titulo= "SoulCalibur (DC)", Nota=98.9, Ano = 2001 },
-                    };
+            GamesComNotaMaior = new List<Game>();
 
-            GamesComNotaMaior = new List<Game>()
-                    {
-                        new Game() { Id = "/nintendo-64/the-legend-of-zelda-ocarina-of-time", Titulo= "The Legend of Zelda: Ocarina of Time (N64)", Nota=98.9, Ano = 1998 },
-                        new Game() { Id = "/playstation/tony-hawks-pro-skater-2", Titulo= "Tony Hawk's Pro Skater 2 (PS)", Nota=99, Ano = 1998 },
-                    };
-
-            ClassificaVencedores = new List<Game>()
+            Jogos = new List<Game>()
             {
                 new Game() { Id = "/nintendo-64/the-legend-of-zelda-ocarina-of-time", Titulo= "The Legend of Zelda: Ocarina of Time (N64)", Nota=99.9, Ano = 1998 },
                 new Game() { Id = "/dreamcast/soulcalibur", Titulo= "SoulCalibur (DC)", Nota=98.9, Ano = 1999 },
                 new Game() { Id = "/wii/super-mario-galaxy", Titulo= "Super Mario Galaxy (WII)", Nota=97.9, Ano = 2007 },
                 new Game() { Id = "/wii/super-mario-galaxy-2", Titulo= "Super Mario Galaxy 2 (WII)", Nota=97.9, Ano = 2010 },
-
+                new Game() { Id = "/dreamcast/tony-hawks-pro-skater-2", Titulo= "Tony Hawk's Pro Skater 2 (DC)", Nota=97.0, Ano = 2000 },
+                new Game() { Id = "/switch/the-legend-of-zelda-breath-of-the-wild", Titulo= "The Legend of Zelda: Breath of the Wild (Switch)", Nota=97.8, Ano = 2017 },
+                new Game() { Id = "/nintendo-64/perfect-dark", Titulo= "Perfect Dark (N64)", Nota=97.8, Ano = 2000 },
+                new Game() { Id = "/cube/metroid-prime", Titulo= "Metroid Prime (GC)", Nota=97.8, Ano = 2002 },
             };
-
-            //MinimoPermitidoDeGames = new List<Game>()
-            //{
-            //    new Game() { Id = "/nintendo-64/the-legend-of-zelda-ocarina-of-time", Titulo= "The Legend of Zelda: Ocarina of Time (N64)", Nota=99.9, Ano = 1998 },
-            //    new Game() { Id = "/dreamcast/soulcalibur", Titulo= "SoulCalibur (DC)", Nota=98.9, Ano = 1999 },
-            //    new Game() { Id = "/wii/super-mario-galaxy", Titulo= "Super Mario Galaxy (WII)", Nota=97.9, Ano = 2007 },
-            //    new Game() { Id = "/wii/super-mario-galaxy-2", Titulo= "Super Mario Galaxy 2 (WII)", Nota=97.9, Ano = 2010 },
-            //    new Game() { Id = "/dreamcast/tony-hawks-pro-skater-2", Titulo= "Tony Hawk's Pro Skater 2 (DC)", Nota=97.0, Ano = 2000 },
-            //    new Game() { Id = "/switch/the-legend-of-zelda-breath-of-the-wild", Titulo= "The Legend of Zelda: Breath of the Wild (Switch)", Nota=97.8, Ano = 2017 },
-            //    new Game() { Id = "/nintendo-64/perfect-dark", Titulo= "Perfect Dark (N64)", Nota=97.8, Ano = 2000 },
-            //    new Game() { Id = "/cube/metroid-prime", Titulo= "Metroid Prime (GC)", Nota=97.8, Ano = 2002 },
-            //    new Game() { Id = "/wii/super-mario-galaxy-2", Titulo= "Super Mario Galaxy 2 (WII)", Nota=97.9, Ano = 2010 },
-            //};
         }
 
         [TestMethod]
-        public void GamesComNotasIguaisTest()
+        public void GamesComNotasIguaisEAnosDiferentesTest()
         {
-            var mockGameTest = new Game() { Id = "/playstation/tony-hawks-pro-skater-2", Titulo = "Tony Hawk's Pro Skater 2 (PS)", Nota = 98.9, Ano = 2000 };
+            var mockGameTest = new Game() { Nota = 98.9, Ano = 2001 };
 
-            var games = _gameService.ClassificarJogos(GamesComNotasIguais);
+            var games = _gameService.CompararJogos(GamesComNotasIguaisEAnosDiferentes, new Game() { Nota = 98.9, Ano = 2000 }, new Game() { Nota = 98.9, Ano = 2001 });
 
             Assert.AreEqual(JsonConvert.SerializeObject(mockGameTest), JsonConvert.SerializeObject(games[0]));
         }
@@ -82,49 +52,35 @@ namespace Lambda3.Games.Tests
         [TestMethod]
         public void GamesComNotasEAnoIguaisTest()
         {
-            var mockGameTest = new Game() { Id = "/dreamcast/soulcalibur", Titulo = "SoulCalibur (DC)", Nota = 98.9, Ano = 1998 };
+            var mockGameTest = new Game() { Nota = 97, Ano = 2000, Titulo = "A" };
 
-            var games = _gameService.ClassificarJogos(GamesComNotasEAnoIguais);
+            var games = _gameService.CompararJogos(GamesComNotasEAnoIguais, new Game() { Nota = 97, Ano = 2000, Titulo = "B" }, new Game() { Nota = 97, Ano = 2000, Titulo = "A" });
 
             Assert.AreEqual(JsonConvert.SerializeObject(mockGameTest), JsonConvert.SerializeObject(games[0]));
-        }
-
-        [TestMethod]
-        public void GamesComNotasIguaiEAnoDiferenteTest()
-        {
-            var mockGameTest = new List<Game>()
-                    {
-                        new Game() { Id = "/dreamcast/soulcalibur", Titulo= "SoulCalibur (DC)", Nota=98.9, Ano = 2001 },
-                        new Game() { Id = "/nintendo-64/the-legend-of-zelda-ocarina-of-time", Titulo= "The Legend of Zelda: Ocarina of Time (N64)", Nota=98.9, Ano = 1998 },
-                    };
-
-            var games = _gameService.ClassificarJogos(GamesComNotasIguaiEAnoDiferente);
-
-            Assert.AreEqual(JsonConvert.SerializeObject(mockGameTest), JsonConvert.SerializeObject(games));
         }
 
         [TestMethod]
         public void GamesComNotaMaiorTest()
         {
-            var mockGameTest = new Game() { Id = "/playstation/tony-hawks-pro-skater-2", Titulo = "Tony Hawk's Pro Skater 2 (PS)", Nota = 99, Ano = 1998 };
+            var mockGameTest = new Game() { Nota = 99 };
 
-            var games = _gameService.ClassificarJogos(GamesComNotaMaior);
+            var games = _gameService.CompararJogos(GamesComNotaMaior, new Game() { Nota = 99 }, new Game() { Nota = 97 });
 
             Assert.AreEqual(JsonConvert.SerializeObject(mockGameTest), JsonConvert.SerializeObject(games[0]));
         }
 
         [TestMethod]
-        public void ClassificaVencedoresTest()
+        public void ClassificarJogosTest()
         {
             var mockGameTest = new List<Game>()
             {
-                new Game() {Id = "/nintendo-64/the-legend-of-zelda-ocarina-of-time", Titulo= "The Legend of Zelda: Ocarina of Time (N64)", Nota=99.9, Ano = 1998 },
-                new Game() {Id = "/dreamcast/soulcalibur", Titulo= "SoulCalibur (DC)", Nota=98.9, Ano = 1999 },
+                new Game() { Id = "/nintendo-64/the-legend-of-zelda-ocarina-of-time", Titulo= "The Legend of Zelda: Ocarina of Time (N64)", Nota=99.9, Ano = 1998 },
+                new Game() { Id = "/dreamcast/soulcalibur", Titulo= "SoulCalibur (DC)", Nota=98.9, Ano = 1999 },
             };
 
-            var finalistas = _gameService.ClassificarJogos(ClassificaVencedores);
+            var games = _gameService.ClassificarJogos(Jogos);
 
-            Assert.AreEqual(JsonConvert.SerializeObject(mockGameTest), JsonConvert.SerializeObject(finalistas));
+            Assert.AreEqual(JsonConvert.SerializeObject(mockGameTest), JsonConvert.SerializeObject(games));
         }
 
         //[TestMethod]
