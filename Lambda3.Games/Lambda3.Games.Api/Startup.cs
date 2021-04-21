@@ -1,3 +1,5 @@
+using FluentValidation.AspNetCore;
+using Lambda3.Games.Core.Validators;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Lambda3.Games.Api
 {
@@ -28,6 +31,11 @@ namespace Lambda3.Games.Api
             services.AddControllers().AddJsonOptions(configure =>
             {
                 configure.JsonSerializerOptions.AllowTrailingCommas = true;
+            }).AddFluentValidation(fv =>
+            {
+                fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+                fv.ValidatorOptions.LanguageManager.Culture = new CultureInfo("pt-BR");
+                fv.RegisterValidatorsFromAssemblyContaining<GameValidator>();
             });
 
             services.AddSwaggerGen();

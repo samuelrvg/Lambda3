@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using Lambda3.Games.Dominio.Model;
-using Lambda3.Games.Dominio.Service;
+using Lambda3.Games.Core.Model;
+using Lambda3.Games.Core.Service;
+using Lambda3.Games.Core.Validators;
+using Microsoft.Extensions.Logging;
 
 namespace Lambda3.Games.Api.Controllers
 {
@@ -9,31 +11,31 @@ namespace Lambda3.Games.Api.Controllers
     [Route("api/[controller]")]
     public class GameController : ControllerBase
     {
+        private readonly ILogger _logger;
         private readonly GameService _gameService;
 
-        public GameController()
+        public GameController(ILogger<GameController> logger)
         {
+            _logger = logger;
             _gameService = new GameService();
         }
 
         [HttpPost]
-        public ActionResult<Game> Post([FromBody] List<Game> games)
+        public IActionResult Post([FromBody] List<Game> games)
         {
-            try
-            {
-                if (games?.Count == _gameService.quantidadeMinimaParaListaDeGames)
-                {
-                    var finalistas = _gameService.ClassificarJogos(games);
-                    return Ok(finalistas);
-                }
+            _logger.LogInformation("test log information");
 
-                return BadRequest();
-            }
-            catch (System.Exception e)
-            {
+            GameValidator validator = new GameValidator();
+            var validateListGames = validator.Validate(games);
 
-                throw e;
+            if (validateListGames.IsValid)
+            {
+                var finalistas = _gameService.ClassificarJogos(games);
+
+                return Ok(finalistas);
             }
+
+            return BadRequest(validateListGames.Errors);
         }
     }
 }

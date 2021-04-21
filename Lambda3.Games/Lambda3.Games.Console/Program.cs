@@ -1,5 +1,5 @@
-﻿using Lambda3.Games.Dominio.Model;
-using Lambda3.Games.Dominio.Service;
+﻿using Lambda3.Games.Core.Model;
+using Lambda3.Games.Core.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;

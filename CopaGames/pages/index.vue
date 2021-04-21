@@ -69,6 +69,7 @@ export default {
 
       try {
         const data = await this.$axios.$post("game", checkedGamesFilter);
+        console.log("data", data);
 
         this.$router.push({
           name: "resultado",
@@ -77,8 +78,13 @@ export default {
           }
         });
       } catch (error) {
-        console.log("err", error);
-        alert("Ocorreu um erro!!!");
+        if (!error.response) return;
+
+        if (error.response.status === 400) {
+          const [{ errorMessage }] = error.response.data;
+          console.log("err", error.response);
+          alert(errorMessage);
+        }
       }
     }
   }

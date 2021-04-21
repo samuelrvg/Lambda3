@@ -26,7 +26,7 @@ http://localhost:3000/
   - Lambda3.Games
     - Lambda3.Games.Api
     - Lambda3.Games.Console
-    - Lambda3.Games.Dominio
+    - Lambda3.Games.Core
     - Lambda3.Games.Test
 - SPA
   - CopaGames
@@ -37,6 +37,7 @@ http://localhost:3000/
   - .NET Core 3.1
   - Swagger
   - Tests com MSTest
+  - Fluent Validator
 - Front End
   - NuxtJs
   - Lodash
