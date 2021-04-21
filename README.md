@@ -53,4 +53,5 @@ http://localhost:3000/
 - Melhorar algoritmo de classificação dos games para ficar dinâmico, assim evita de passar o index manualmente de cada elemento do grupo.
 - Alterar visibilidade do método CompararJogos para private, não alterei para facilitar os testes. Usar Reflection ou Injeção de Dependência são soluções possíveis.
 - Executar testes juntamente com containers do docker.
+- FluentValidator retorna lista de errors muito grande, simplificar retorno.
 - Adicionar tests para GameValidator
