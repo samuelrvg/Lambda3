@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Globalization;
+using Microsoft.OpenApi.Models;
 
 namespace Lambda3.Games.Api
 {
@@ -38,7 +39,10 @@ namespace Lambda3.Games.Api
                 fv.RegisterValidatorsFromAssemblyContaining<GameValidator>();
             });
 
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Copa Games", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
