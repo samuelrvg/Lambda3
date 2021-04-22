@@ -33,8 +33,8 @@ namespace Lambda3.Games.Core.Services
             }
 
             var semiFinal = new List<Game>();
-            CompararJogos(semiFinal, quartasDeFinal[0], quartasDeFinal[2]);
-            CompararJogos(semiFinal, quartasDeFinal[1], quartasDeFinal[3]);
+            CompararJogos(semiFinal, quartasDeFinal[0], quartasDeFinal[1]);
+            CompararJogos(semiFinal, quartasDeFinal[2], quartasDeFinal[3]);
 
             var final = new List<Game>();
             CompararJogos(final, semiFinal[0], semiFinal[1]);

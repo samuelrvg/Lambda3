@@ -75,7 +75,7 @@ namespace Lambda3.Games.Tests
             var mockGameTest = new List<Game>()
             {
                 new Game() { Id = "/nintendo-64/the-legend-of-zelda-ocarina-of-time", Titulo= "The Legend of Zelda: Ocarina of Time (N64)", Nota=99.9, Ano = 1998 },
-                new Game() { Id = "/playstation-3/grand-theft-auto-iv", Titulo= "Grand Theft Auto IV (PS3)", Nota=98.9, Ano = 2008 },
+                new Game() { Id = "/dreamcast/soulcalibur", Titulo= "SoulCalibur (DC)", Nota=98.9, Ano = 1999 },
             };
 
             var games = _gameService.ClassificarJogos(Jogos);
