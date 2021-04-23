@@ -39,11 +39,7 @@
 
 <script>
 import _ from "lodash";
-import card from "../components/card";
 export default {
-  components: {
-    card
-  },
   data() {
     return {
       games: [],
