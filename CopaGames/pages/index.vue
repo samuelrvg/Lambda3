@@ -19,10 +19,9 @@
       <div
         v-for="(game, index) in games"
         :key="index"
-        class="col-md-3 col-6 my-2"
+        class="col-12 col-md-4 col-lg-3 my-2"
       >
         <div class="h-100">
-          <!-- <card :game="game" :checkedGames="checkedGames"></card> -->
           <b-card :header="`${game.ano}`">
             <b-card-text class="text-truncate">
               {{ game.titulo }}
@@ -69,7 +68,6 @@ export default {
 
       try {
         const data = await this.$axios.$post("game", checkedGamesFilter);
-        console.log("data", data);
 
         this.$router.push({
           name: "resultado",
@@ -82,7 +80,6 @@ export default {
 
         if (error.response.status === 400) {
           const [{ errorMessage }] = error.response.data;
-          console.log("err", error.response);
           alert(errorMessage);
         }
       }
