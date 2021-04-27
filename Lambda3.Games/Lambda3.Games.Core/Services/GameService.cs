@@ -20,13 +20,13 @@ namespace Lambda3.Games.Core.Services
         {
             var quartasDeFinal = new List<Game>();
 
-            jogos = jogos.OrderBy(g => g.Titulo).ToList();
+            var listaJogosPorTitulo = jogos.OrderBy(g => g.Titulo).ToList();
 
-            int indiceUltimosJogosDaLista = jogos.Count - 1;
+            int indiceUltimosJogosDaLista = listaJogosPorTitulo.Count - 1;
 
-            for (int i = 0; i < jogos.Count; i++)
+            for (int i = 0; i < listaJogosPorTitulo.Count; i++)
             {
-                quartasDeFinal.Add(Comparar(jogos[i], jogos[indiceUltimosJogosDaLista]).Item1);
+                quartasDeFinal.Add(Comparar(listaJogosPorTitulo[i], listaJogosPorTitulo[indiceUltimosJogosDaLista]).Item1);
 
                 if ((indiceUltimosJogosDaLista - i) == 1)
                     break;
@@ -54,34 +54,34 @@ namespace Lambda3.Games.Core.Services
         {
             var finalistas = new List<Game>();
 
-            var finalista = Comparar(semiFinalistas[0], semiFinalistas[1]).Item1;
+            var primeiroESegundoLugar = Comparar(semiFinalistas[0], semiFinalistas[1]);
 
-            finalistas.Add(finalista);
-            finalistas.Add(semiFinalistas.FirstOrDefault(g => !(finalistas.Contains(g))));
+            finalistas.Add(primeiroESegundoLugar.Item1);
+            finalistas.Add(primeiroESegundoLugar.Item2);
 
             return finalistas;
         }
 
-        public Tuple<Game, Game> Comparar(Game primeiroJogador, Game segundoJogador)
+        public Tuple<Game, Game> Comparar(Game primeiroJogo, Game segundoJogo)
         {
-            if (primeiroJogador.Nota > segundoJogador.Nota)
-                return new Tuple<Game, Game>(primeiroJogador, segundoJogador);
+            if (primeiroJogo.Nota > segundoJogo.Nota)
+                return new Tuple<Game, Game>(primeiroJogo, segundoJogo);
 
-            if (primeiroJogador.Nota == segundoJogador.Nota)
+            if (primeiroJogo.Nota == segundoJogo.Nota)
             {
-                if (primeiroJogador.Ano > segundoJogador.Ano)
-                    return new Tuple<Game, Game>(primeiroJogador, segundoJogador);
+                if (primeiroJogo.Ano > segundoJogo.Ano)
+                    return new Tuple<Game, Game>(primeiroJogo, segundoJogo);
 
-                if (primeiroJogador.Ano == segundoJogador.Ano)
+                if (primeiroJogo.Ano == segundoJogo.Ano)
                 {
-                    if (string.Compare(primeiroJogador.Titulo, segundoJogador.Titulo, StringComparison.InvariantCulture) < 0)
-                        return new Tuple<Game, Game>(primeiroJogador, segundoJogador);
+                    if (string.Compare(primeiroJogo.Titulo, segundoJogo.Titulo, StringComparison.InvariantCulture) < 0)
+                        return new Tuple<Game, Game>(primeiroJogo, segundoJogo);
 
-                    return new Tuple<Game, Game>(segundoJogador, primeiroJogador);
+                    return new Tuple<Game, Game>(segundoJogo, primeiroJogo);
                 }
             }
 
-            return new Tuple<Game, Game>(segundoJogador, primeiroJogador);
+            return new Tuple<Game, Game>(segundoJogo, primeiroJogo);
         }
     }
 }
