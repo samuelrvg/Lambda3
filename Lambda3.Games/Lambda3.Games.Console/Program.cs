@@ -16,17 +16,18 @@ namespace Lambda3.Games.Console
 
             var gamesSelecionados = SelecionarOitoGamesDistintosParaDisputa(games);
 
-            var classificacao = gameService.ClassificarJogos(gamesSelecionados);
+            var finalistas = gameService.ClassificarJogos(gamesSelecionados);
+            int count = 1;
 
-            WriteLine("-------PRIMEIRO LUGAR-------");
-            WriteLine($"Titulo: {classificacao[0].Titulo}");
-            WriteLine($"Nota: {classificacao[0].Nota}");
-            WriteLine($"Ano: {classificacao[0].Ano}");
+            foreach (var finalista in finalistas)
+            {
+                WriteLine($"------- {count}º LUGAR -------");
+                WriteLine($"Titulo: {finalista.Titulo}");
+                WriteLine($"Nota: {finalista.Nota}");
+                WriteLine($"Ano: {finalista.Ano}");
 
-            WriteLine("-------SEGUNDO LUGAR-------");
-            WriteLine($"Titulo: {classificacao[1].Titulo}");
-            WriteLine($"Nota: {classificacao[1].Nota}");
-            WriteLine($"Ano: {classificacao[1].Ano}");
+                count++;
+            }
 
             ReadKey();
         }
