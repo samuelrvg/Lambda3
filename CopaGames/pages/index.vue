@@ -1,5 +1,12 @@
 <template>
   <div>
+    <b-jumbotron header="Challenge Games" lead="Fase de seleção">
+      <hr class="my-4" />
+      <p>
+        Selecione 8 games que você deseja que entrem na competição e depois o
+        botão Gerar Meu Campeonato para prosseguir.
+      </p>
+    </b-jumbotron>
     <b-row class="mb-2">
       <b-col md="3"
         ><p class="font-weight-normal">
@@ -66,7 +73,7 @@ export default {
         const data = await this.$axios.$post("game", checkedGamesFilter);
 
         this.$router.push({
-          name: "resultado",
+          name: "result",
           params: {
             data: data.map(g => g.titulo)
           }

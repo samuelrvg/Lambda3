@@ -1,5 +1,12 @@
 <template>
   <div>
+    <b-jumbotron lead="Campeonato de games">
+      <hr class="my-4" />
+      <h3>Resultado Final</h3>
+      <p>
+        Veja o resultado final do campeonato de game de forma simples e rápida
+      </p>
+    </b-jumbotron>
     <b-card-group deck class="mb-3">
       <b-card border-variant="success" header="1º Lugar" align="center">
         <b-card-text>{{ primeiroLugar }}</b-card-text>
