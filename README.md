@@ -6,8 +6,6 @@ Motivo de não usar angular ou react no front-end foi por achar que não consegu
 
 Sobre os testes do Back End não tenho certeza se ficou como o esperado, mas fiz o meu melhor, pois como expliquei na primeira entrevista, estudei muito pouco a parte de testes em projetos pessoais meus, nunca me aprofundei no assunto por não fazer parte da cultura das empresas que já trabalhei.
 
-Ainda sobre o Back End, eu não vi a necessidade de criar várias camadas nem mesmo usar injeção de dependência, interfaces etc, como muitos constuman fazer, visto a simplicidade do projeto.
-
 ### Iniciando API e Front-End com docker-compose
 
 ```sh
@@ -34,7 +32,6 @@ dotnet test
 - Api
   - Lambda3.Games
     - Lambda3.Games.Api
-    - Lambda3.Games.Console
     - Lambda3.Games.Core
     - Lambda3.Games.Test
 - SPA
@@ -54,8 +51,6 @@ dotnet test
 
 #### O que pode ser melhorado
 
-- Melhorar algoritmo de classificação dos games para ficar dinâmico, assim evita de passar o index manualmente de cada elemento do grupo.
-- Alterar visibilidade do método CompararJogos para private, não alterei para facilitar os testes. Usar Reflection ou Injeção de Dependência são soluções possíveis.
 - Configurar variaveis de ambiente
 - Configurar certificado no container da api para permitir https
 - Executar testes juntamente com containers do docker.
