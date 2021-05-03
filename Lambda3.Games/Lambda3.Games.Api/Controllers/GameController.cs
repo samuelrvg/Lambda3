@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Lambda3.Games.Core.Models;
-using Lambda3.Games.Core.Services;
 using Lambda3.Games.Core.Validators;
 using Microsoft.Extensions.Logging;
+using Lambda3.Games.Core.Interfaces;
 
 namespace Lambda3.Games.Api.Controllers
 {
@@ -12,12 +12,12 @@ namespace Lambda3.Games.Api.Controllers
     public class GameController : ControllerBase
     {
         private readonly ILogger _logger;
-        private readonly GameService _gameService;
+        private readonly IGameService _gameService;
 
-        public GameController(ILogger<GameController> logger)
+        public GameController(ILogger<GameController> logger, IGameService gameService)
         {
             _logger = logger;
-            _gameService = new GameService();
+            _gameService = gameService;
         }
 
         [HttpPost]

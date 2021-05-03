@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Lambda3.Games.Core.Interfaces;
 using Lambda3.Games.Core.Models;
 
 namespace Lambda3.Games.Core.Services
 {
-    public class GameService
+    public class GameService : IGameService
     {
         public List<Game> ClassificarJogos(List<Game> jogos)
         {
@@ -16,7 +17,7 @@ namespace Lambda3.Games.Core.Services
             return Final(semiFinal);
         }
 
-        private List<Game> QuartasDeFinal(List<Game> jogos)
+        public List<Game> QuartasDeFinal(List<Game> jogos)
         {
             var quartasDeFinal = new List<Game>();
 
@@ -37,7 +38,7 @@ namespace Lambda3.Games.Core.Services
             return quartasDeFinal;
         }
 
-        private List<Game> SemiFinal(List<Game> quartasDeFinal)
+        public List<Game> SemiFinal(List<Game> quartasDeFinal)
         {
             var semiFinal = new List<Game>();
 
@@ -50,7 +51,7 @@ namespace Lambda3.Games.Core.Services
             return semiFinal;
         }
 
-        private List<Game> Final(List<Game> semiFinalistas)
+        public List<Game> Final(List<Game> semiFinalistas)
         {
             var finalistas = new List<Game>();
 

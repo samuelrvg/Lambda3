@@ -14,6 +14,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Globalization;
 using Microsoft.OpenApi.Models;
+using Lambda3.Games.Core.Interfaces;
+using Lambda3.Games.Core.Services;
 
 namespace Lambda3.Games.Api
 {
@@ -38,6 +40,8 @@ namespace Lambda3.Games.Api
                 fv.ValidatorOptions.LanguageManager.Culture = new CultureInfo("pt-BR");
                 fv.RegisterValidatorsFromAssemblyContaining<GameValidator>();
             });
+
+            services.AddSingleton<IGameService, GameService>();
 
             services.AddSwaggerGen(c =>
             {
